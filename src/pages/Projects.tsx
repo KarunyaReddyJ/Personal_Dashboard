@@ -16,6 +16,8 @@ const Projects: React.FC = () => {
 
   useEffect(() => {
     const getProjects = async () => {
+      console.log('projects')
+      if(!username) return
       const repos = await axios.get(`https://api.github.com/users/${username}/repos`);
       console.log(repos);
       repos.data.forEach((repo: any) => {

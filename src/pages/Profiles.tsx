@@ -16,6 +16,8 @@ const Profiles: React.FC = () => {
   const { username } = useDashboardStore();
 
   useEffect(() => {
+    console.log('profile')
+    if(!username) return
     axios
       .get(`https://api.github.com/users/${username}`)
       .then((response) => setProfile(response.data))
