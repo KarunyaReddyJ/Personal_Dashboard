@@ -1,14 +1,15 @@
 // src/store/useDashboardStore.ts
-import create from 'zustand';
+import { create } from 'zustand'; // Correct way to import from zustand
 
 interface DashboardState {
-  learningGoals: number;
-  setLearningGoals: (goals: number) => void;
+  goals: string[];
+  setGoals: (goals: string[]) => void;
 }
 
-const useDashboardStore = create<DashboardState>((set) => ({
-  learningGoals: 0,
-  setLearningGoals: (goals) => set({ learningGoals: goals }),
+// Explicitly typing 'set' to avoid 'any' type errors
+const useDashboardStore = create<DashboardState>((set: (state: Partial<DashboardState>) => void) => ({
+  goals: [],
+  setGoals: (goals: string[]) => set({ goals }),
 }));
 
 export default useDashboardStore;
