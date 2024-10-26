@@ -14,7 +14,7 @@ const useDashboardStore = create<DashboardState>((set) => ({
   goals: [],
   setGoals: (goals) => set({ goals }),
 
-  username: '',
+  username:localStorage.getItem('profileUserName') ||  '',
   setUsername: (name) => set({ username: name }),
 }));
 
