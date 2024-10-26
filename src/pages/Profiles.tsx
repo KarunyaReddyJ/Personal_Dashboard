@@ -1,7 +1,7 @@
 // src/pages/Profiles.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import useDashboardStore from '../store/useDashboardStore';
 interface GitHubProfile {
   login: string;
   public_repos: number;
@@ -10,9 +10,9 @@ interface GitHubProfile {
 
 const Profiles: React.FC = () => {
   const [profile, setProfile] = useState<GitHubProfile | null>(null);
-
+  const {username}=useDashboardStore()
   useEffect(() => {
-    axios.get('https://api.github.com/users/<your-username>')
+    axios.get(`https://api.github.com/users/${username}`)
       .then((response) => setProfile(response.data))
       .catch((error) => console.error(error));
   }, []);
